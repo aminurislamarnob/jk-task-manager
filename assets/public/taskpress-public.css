@@ -86,12 +86,14 @@ td.fc-daygrid-day {
 }
 
 .task-progress .task-progress-wrapper {
-    background: #fff;
+    background: #1d1e27;
     padding: 20px;
     font-size: 14px;
     border-radius: 5px;
 }
-
+.task-progress .task-progress-wrapper h3, .task-progress .task-progress-wrapper ul {
+    color: #fff;
+}
 .task-progress ul.task-progress-list li.completed {
     text-decoration: line-through;
     color: #0cb83d;
