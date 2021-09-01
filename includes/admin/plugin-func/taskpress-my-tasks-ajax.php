@@ -27,7 +27,7 @@ function taskpress_my_tasks(){
 
     $my_task_list = '';
     $my_task_list = '<div class="task-loader" style="display:none;"><div class="task-ellipsis"><div></div><div></div><div></div><div></div></div></div>';
-    if($taskPercentage>0){
+    if($totalTodayTasks > 0 && $taskPercentage>0){
     $my_task_list .= '
         <div class="taskpress-progress-bar">
           <div class="progress-bar" data-percent="'.$taskPercentage.'" style="width: '.$taskPercentage.'%;">

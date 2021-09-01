@@ -10,6 +10,7 @@ function taskpress_delete_task(){
 
         global $wpdb;
         $taskpress_task_table_name = $wpdb->prefix.'taskpress_tasks';
+        $taskpress_completed_taks_tbl = $wpdb->prefix.'taskpress_completed_tasks';
 
         $task_id = isset( $_POST['task_id'] ) ? sanitize_text_field($_POST['task_id']) : '';
 
@@ -17,6 +18,7 @@ function taskpress_delete_task(){
         if( !empty($task_id) ) {
             //delete code
             $taskDeleteQuery = $wpdb->delete( $taskpress_task_table_name, array( 'id' => $task_id ) );
+            $wpdb->delete( $taskpress_completed_taks_tbl, array( 'task_id' => $task_id ) ); //delete from completed task table
             
             //Confirmation Message
             if($taskDeleteQuery){
