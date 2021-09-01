@@ -1,0 +1,439 @@
+/**
+Form CSS
+*/
+.task-title-wrap {
+    margin-bottom: 30px;
+}
+.taskpress-form {
+    max-width: 500px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.taskpress-form .task-form-group {
+    margin-bottom: 20px;
+}
+.task-form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.wp-core-ui .button-primary.taskpress-btn {
+    padding: 13px 20px!important;
+    text-transform: uppercase;
+    line-height: 1;
+    font-weight: 600;
+    margin-top: 10px;
+}
+table.taskpress-form {
+    width: 100%;
+    max-width: 600px;
+    table-layout: fixed;
+}
+.task-form-group input[type=text], .task-form-group textarea, .task-form-group select{
+    width: 100%;
+    padding: 10px;
+    border-color: #ddd;
+}
+table.taskpress-form td.task-col-50 {
+    max-width: 50%;
+}
+.mt-20{
+    margin-top: 20px!important;
+}
+#progressCalendar {
+    max-width: 100%;
+    margin: 20px auto;
+}
+.task-progress-container {
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    max-width: 1140px;
+    grid-gap: 20px;
+}
+.fc-view-harness {
+    background: #fff;
+}
+
+.fc-view-harness a {
+    color: #1d2327;
+}
+.fc-col-header .fc-day {
+    padding: 10px 0;
+}
+#progressCalendar .fc-prev-button, #progressCalendar .fc-next-button, #progressCalendar .fc-today-button {
+    display: none;
+}
+#progressCalendar .fc-event-title span {
+    display: block;
+    width: 100%;
+    padding: 2px;
+}
+
+#progressCalendar .fc-event-title {
+    display: block!important;
+    cursor: pointer;
+}
+
+#progressCalendar .fc-h-event .fc-event-title span.completed {
+    background: #09B83E;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+#progressCalendar .fc-h-event .fc-event-title span.uncompleted {
+    background: #DF2029;
+    border-radius: 4px;
+}
+#progressCalendar .fc-h-event {
+    background-color: transparent;
+    border: none;
+}
+.task-progress {
+    margin-top: 58px;
+}
+
+.task-progress .task-progress-wrapper {
+    background: #fff;
+    padding: 20px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.task-progress ul.task-progress-list li.completed {
+    text-decoration: line-through;
+    color: #0cb83d;
+}
+
+.task-progress ul.task-progress-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 23px;
+}
+.task-progress ul.task-progress-list li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "\f147";
+    font-family: dashicons;
+    color: #df2129;
+    font-size: 17px;
+}
+
+.task-progress ul.task-progress-list li.uncompleted::before {
+    content: "\f335";
+}
+.task-progress ul.task-progress-list li.completed::before {
+    color: #0cb83d;
+}
+.task-actions {
+    display: flex;
+    gap: 15px;
+}
+.toplevel_page_taskpress_tasks a[href='admin.php?page=taskpress_edit_task'] {
+    display: none!important;
+}
+td.task-status .dashicons-no-alt, .notice .remove-notice {
+    color: #DF2029;
+}
+td.task-status .dashicons-yes, .notice-success .remove-notice {
+    color: #09B83E;
+}
+.taskpress-notice .notice-error {
+    background: rgb(197 14 16 / 5%);
+    color: #d63638;
+    border-color: #d63638;
+    border-radius: 4px;
+}
+
+.taskpress-notice .notice-error p, .taskpress-notice .notice-success p {
+    font-size: 14px;
+}
+.taskpress-notice .notice-success{
+    background: rgb(0 163 42 / 5%);
+    border-color: #00a32a;
+    border-radius: 4px;
+}
+.taskpress-notice-text{
+    position: relative;
+    display: none;
+}
+.notice .remove-notice {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.taskpress-notice-text.notice {
+    display: block;
+}
+.taskadd-row {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    grid-gap: 20px;
+}
+
+.task-added-list {
+    background: #fff;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: none;
+}
+.task-added-list li {
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f1;
+}
+.task-added-list h3 {
+    margin-top: 0;
+}
+
+/*Date picker*/
+.ui-datepicker {
+    width: 300px!important;
+}
+
+.ui-datepicker td a {
+    padding: 6px!important;
+}
+
+.ui-button.ui-state-active:hover, .ui-button:active, .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active {
+    background: #2171b1!important;
+    border-color: #2171b1!important;
+    color: #fff!important;
+}
+.taskpress-form-sm{
+    max-width: 440px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+.task-form-inline {
+    display: grid;
+    grid-template-columns: 9fr 3fr;
+    align-items: center;
+    grid-gap: 10px;
+}
+
+.task-form-inline .task-form-group input[type=text] {
+    padding: 6px 10px;
+    height: 41px;
+}
+
+.task-form-inline .taskpress-btn.mt-20 {
+    margin-top: 22px!important;
+}
+/* .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+    color: #fff;
+} */
+.taskpress-list-table {
+    max-width: 1000px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.taskpress-list-table table {
+    border: 0px;
+}
+
+.taskpress-list-table table thead th {
+    border: 0px;
+    background: #2171b1;
+    font-weight: 600;
+    color: #fff;
+}
+.taskpress-list-table table thead th:first-child, .taskpress-list-table table tbody td:first-child {
+    border-top-left-radius: 4px;
+}
+
+.taskpress-list-table table thead th:last-child, .taskpress-list-table table thead th:last-child {
+    border-top-right-radius: 4px;
+}
+
+/*Button Loading*/
+.btn-loading{
+    position: relative;
+}
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 0.7s ease infinite;
+}
+.btn-loading span {
+    opacity: 0.2;
+}
+@keyframes button-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+  
+    to {
+      transform: rotate(1turn);
+    }
+}
+.taskpress-d-none{
+    display: none;
+}
+
+.modal .taskpress-form {
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+}
+.margin-0{
+    margin: 0px;
+}
+div#alertMsgTable {
+    max-width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.my-task-list {
+    background: #fff;
+    border-radius: 4px;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.my-task-list li {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #f0f0f1;
+    padding-bottom: 12px;
+}
+
+.my-task-list li input {
+    position: relative;
+    top: 2px;
+    margin-right: 10px;
+}
+.my-task-list li.marked-list {
+    text-decoration: line-through;
+    /* pointer-events: none; */
+}
+
+.task-progress-form .select2-container .select2-selection--single .select2-selection__rendered {
+    line-height: 34px;
+}
+
+.task-progress-form .select2-container--default .select2-selection--single {
+    height: 40px;
+    border-color: #ddd;
+}
+
+.task-progress-form .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px;
+    right: 5px;
+}
+.icon-list-taskpress svg path {
+    fill: #646970;
+}
+
+.icon-list-taskpress svg {
+    position: relative;
+    top: 3px;
+    margin-right: 4px;
+}
+.taskpress-nav {
+    max-width: 1000px;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.taskpress-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.taskpress-nav ul li {
+    display: inline-block;
+    margin: 0;
+}
+
+.taskpress-nav ul li a {
+    color: #1d2327;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 20px 30px;
+    display: inline-block;
+    font-weight: 500;
+    border-right: 1px solid #f0f0f1;
+    margin-right: -4px;
+    border-bottom: 2px solid #fff;
+    transition: .3s;
+}
+.taskpress-nav ul li:last-child a{
+    border-right: none;
+}
+
+.taskpress-nav ul li.active a, .taskpress-nav ul li a:hover {
+    color: #2171b1;
+    border-bottom: 2px solid #2171b1;
+}
+.wrap.taskpress-dashboard .meta-box-sortables {
+    margin-left: 0!important;
+    margin-right: 20px!important;
+}
+
+#dashboard-widgets .meta-box-sortables .postbox {
+    border-radius: 5px;
+    border: 0px;
+}
+
+#dashboard-widgets .meta-box-sortables .postbox .postbox-header {
+    border-color: #f0f0f1;
+}
+.taskpress-progress-bar {
+    max-width: 600px;
+    background: #fff;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.taskpress-progress-bar .progress-bar {
+    background: #2171b1;
+    color: #fff;
+    padding: 3px 0;
+    text-align: center;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.my-task-wrapper .task-progress-container {
+    grid-template-columns: 7fr 5fr;
+}
+.my-task-wrapper #progressCalendar .fc-event-title {
+    font-size: 10px;
+}
+.taskpress-list-tables {
+    margin-top: 14px;
+}
+.task-number-0 {
+    display: none!important;
+}
