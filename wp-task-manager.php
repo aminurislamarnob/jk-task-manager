@@ -19,8 +19,20 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /**
  * Currently plugin version.
  */
-define('TASKPRESS_PLUGIN_VERSION', '2.1');
+define('TASKPRESS_PLUGIN_VERSION', '1.0');
 
+
+/**
+ * plugin timezone.
+ */
+define('TASKPRESS_TIMEZONE', 'Europe/Amsterdam');
+
+function taskpress_timezone(){
+    $taskpress_date_time_zone = new DateTime();
+    return $taskpress_date_time_zone->setTimezone(new DateTimeZone(TASKPRESS_TIMEZONE));
+}
+
+// echo $taskpress_date_time_zone->format('d');
 
 /**
  * Load plugin textdomain.
@@ -94,7 +106,7 @@ require TASKPRESS_DIR . 'includes/admin/plugin-func/taskpress-my-task-update.php
 /*
 Register taskpress shortcode
 */
-add_shortcode( 'wptask_my_task', 'taskpress_mytask_shortcode' );
+add_shortcode( 'frontend_checklist', 'taskpress_mytask_shortcode' );
 function taskpress_mytask_shortcode( $atts ) {
     if ( is_user_logged_in() ) {
         ob_start();

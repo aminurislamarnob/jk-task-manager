@@ -7,7 +7,7 @@ function taskpress_my_tasks(){
     $taskpress_task_table_name = $wpdb->prefix.'taskpress_tasks';
     $taskpress_completed_taks_tbl = $wpdb->prefix.'taskpress_completed_tasks';
     
-    $taskpress_today_date = date("Y-m-d");
+    $taskpress_today_date = taskpress_timezone()->format("Y-m-d");
     $loggedin_user_id = get_current_user_id();
 
     $taskpress_all_tasks = $wpdb->get_results("SELECT id, task FROM $taskpress_task_table_name WHERE assign_date = '$taskpress_today_date'");

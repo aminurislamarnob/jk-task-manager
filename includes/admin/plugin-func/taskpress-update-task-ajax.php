@@ -17,55 +17,53 @@ function taskpress_update_task(){
 
         if ( !empty($assign_date) && (strtotime($assign_date) !== false) ){
             //Assign date
-            $str_to_date = strtotime($assign_date);
-            $assign_year = date("Y", $str_to_date);
-            $assign_month = date("m", $str_to_date);
+            // $str_to_date = strtotime($assign_date);
+            // $assign_year = date("Y", $str_to_date);
+            // $assign_month = date("m", $str_to_date);
 
+            $date_with_timezone = new DateTime($assign_date, new DateTimeZone(TASKPRESS_TIMEZONE));
+            $assign_year = $date_with_timezone->format("Y");
+            $assign_month = $date_with_timezone->format("m");
+            
             //Today date
-            $current_month = date("m");
-            $current_year = date("Y");
+            // $current_month = date("m");
+            // $current_year = date("Y");
 
-            if( ($current_month == $assign_month) && ($current_year == $assign_year) ){
-                if( !empty($task) ) {
-                    //Check same day selected users number of task
-                    $matched_tasks = $wpdb->get_results("SELECT * FROM $taskpress_task_table_name WHERE assign_date = '$assign_date' AND id != $task_id");
-                    $max_task_limit = 10;
+            if( !empty($task) ) {
+                //Check same day selected users number of task
+                $matched_tasks = $wpdb->get_results("SELECT * FROM $taskpress_task_table_name WHERE assign_date = '$assign_date' AND id != $task_id");
+                $max_task_limit = 10;
 
-                    if(count($matched_tasks) < $max_task_limit){ //maximum 10 task for a user in a day.
-                        //update code
-                        $taskUpdateQuery = $wpdb->update( $taskpress_task_table_name,
-                            array(
-                                "task" => $task,
-                                "assign_date" => $assign_date,
-                            ),
-                            array(
-                                'id' => $task_id
-                            )
+                if(count($matched_tasks) < $max_task_limit){ //maximum 10 task for a user in a day.
+                    //update code
+                    $taskUpdateQuery = $wpdb->update( $taskpress_task_table_name,
+                        array(
+                            "task" => $task,
+                            "assign_date" => $assign_date,
+                        ),
+                        array(
+                            'id' => $task_id
+                        )
 
-                        );
-                        
-                        //Confirmation Message
-                        if($taskUpdateQuery){
-                            $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
-                            echo $message;
-                            wp_die();
-                        }else{
-                            $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
-                            echo $message;
-                            wp_die();
-                        }
+                    );
+                    
+                    //Confirmation Message
+                    if($taskUpdateQuery){
+                        $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
+                        echo $message;
+                        wp_die();
                     }else{
-                        $message = json_encode(array('type'=>'error', 'text' => 'Already assigned '.$max_task_limit.' task for this selected date.', 'tasks' => get_task_list_by_date($assign_date), 'assign_date' => $assign_date));
+                        $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
                         echo $message;
                         wp_die();
                     }
                 }else{
-                    $message = json_encode(array('type'=>'error', 'text' => 'Please fillup task details.'));
+                    $message = json_encode(array('type'=>'error', 'text' => 'Already assigned '.$max_task_limit.' task for this selected date.', 'tasks' => get_task_list_by_date($assign_date), 'assign_date' => $assign_date));
                     echo $message;
                     wp_die();
                 }
             }else{
-                $message = json_encode(array('type'=>'error', 'text' => 'Please select date from current month only.', 'tasks' => get_task_list_by_date($assign_date), 'assign_date' => $assign_date));
+                $message = json_encode(array('type'=>'error', 'text' => 'Please fillup task details.'));
                 echo $message;
                 wp_die();
             }

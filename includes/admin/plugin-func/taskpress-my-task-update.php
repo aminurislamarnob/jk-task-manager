@@ -11,9 +11,9 @@ function taskpress_task_status_update(){
         $status = 1;
         $task_id = isset( $_POST['id'] ) ? sanitize_text_field($_POST['id']) : null;
         $loggedin_user_id = get_current_user_id();
-        $taskpress_today_date = date("Y-m-d");
-        $marked_month = date("m");
-        $marked_year = date("Y");
+        $taskpress_today_date = taskpress_timezone()->format("Y-m-d");
+        $marked_month = taskpress_timezone()->format("m");
+        $marked_year = taskpress_timezone()->format("Y");
 
 
         if( !empty($task_id) ) {

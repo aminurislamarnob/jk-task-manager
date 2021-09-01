@@ -5,9 +5,11 @@
 <div class="taskpress-nav">
    <ul>
          <li class="active"><a href="admin.php?page=taskpress_tasks">Taakbeheer</a></li>
+         <?php if(current_user_can('administrator')){ ?>
          <li><a href="admin.php?page=taskpress_task_list">Takenlijst</a></li>
          <li><a href="admin.php?page=taskpress_add_task">Taak toevoegen</a></li>
          <li><a href="admin.php?page=taskpress_task_progress">Taak toevoegen</a></li>
+         <?php } ?>
          <li><a href="admin.php?page=taskpress_my_tasks">Mijn Taken</a></li>
    </ul>
 </div>

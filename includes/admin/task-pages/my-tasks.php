@@ -5,9 +5,11 @@
     <div class="taskpress-nav">
         <ul>
             <li><a href="admin.php?page=taskpress_tasks">Taakbeheer</a></li>
+            <?php if(current_user_can('administrator')){ ?>
             <li><a href="admin.php?page=taskpress_task_list">Takenlijst</a></li>
             <li><a href="admin.php?page=taskpress_add_task">Taak toevoegen</a></li>
             <li><a href="admin.php?page=taskpress_task_progress">Taak Vooruitgang</a></li>
+            <?php } ?>
             <li class="active"><a href="admin.php?page=taskpress_my_tasks">Mijn Taken</a></li>
         </ul>
     </div>
@@ -24,14 +26,15 @@
     </div>
 <?php 
     $taskpress_first_day = new DateTime('first day of this month');
+    $taskpress_first_day->setTimezone(new DateTimeZone(TASKPRESS_TIMEZONE));
 
     //Get task data from db
     global $wpdb;
     $taskpress_task_table_name = $wpdb->prefix.'taskpress_tasks';
     $taskpress_completed_taks_tbl = $wpdb->prefix.'taskpress_completed_tasks';
     $task_user_id = get_current_user_id();
-    $current_month = date("m");
-    $current_year = date("Y");
+    $current_month = taskpress_timezone()->format('m');
+    $current_year = taskpress_timezone()->format('Y');
 
     //Find matched tasks from db
     $matched_tasks = $wpdb->get_results("SELECT assign_date, GROUP_CONCAT(task SEPARATOR '~') AS tasks, GROUP_CONCAT(id SEPARATOR '~') AS task_id FROM $taskpress_task_table_name WHERE assign_month = $current_month AND assign_year = $current_year GROUP BY assign_date");
@@ -101,7 +104,7 @@
                 var eventObj = info.event;
 
                 if (eventObj.extendedProps.tasks) {
-                    let todayDate = '<?php echo date("Y-m-d"); ?>';
+                    let todayDate = '<?php echo taskpress_timezone()->format("Y-m-d"); ?>';
                     
                     if(todayDate == eventObj.extendedProps.assignDate){
                         document.querySelector('#taskList').style.display = "none";

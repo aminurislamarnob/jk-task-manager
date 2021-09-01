@@ -67,25 +67,31 @@ jQuery(document).ready(function($){
     //Date Picker Config
     var currentTime = new Date();
     var startDateFrom = new Date(currentTime.getFullYear(),currentTime.getMonth(),1);
-    var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
-    var dateToday = new Date(); 
+    // var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
+    var dateToday = new Date();
+
+    <?php if(taskpress_timezone()->format('d') < 23){ ?>
+        var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
+    <?php }else{ ?>
+        var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
+    <?php } ?>
 
     $(".assign_date").datepicker({
         dateFormat: 'yy-mm-dd',
         minDate: startDateFrom,
         maxDate: startDateTo,
-        changeMonth: false,
-        changeYear: false,
-        stepMonths: false,
+        // changeMonth: false,
+        // changeYear: false,
+        // stepMonths: false,
     });
 
     $(".update_assign_date").datepicker({
         dateFormat: 'yy-mm-dd',
         minDate: startDateFrom,
         maxDate: startDateTo,
-        changeMonth: false,
-        changeYear: false,
-        stepMonths: false,
+        // changeMonth: false,
+        // changeYear: false,
+        // stepMonths: false,
         minDate: dateToday
     });
 

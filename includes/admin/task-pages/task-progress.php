@@ -53,6 +53,7 @@ function taskpress_task_progress_calendar(){
     
     <?php 
     $taskpress_first_day = new DateTime('first day of this month');
+    $taskpress_first_day->setTimezone(new DateTimeZone(TASKPRESS_TIMEZONE));
     
     //Get task data from db
     if( isset($_REQUEST['user_id']) && !empty($_REQUEST['user_id']) ){
@@ -60,8 +61,8 @@ function taskpress_task_progress_calendar(){
         $taskpress_task_table_name = $wpdb->prefix.'taskpress_tasks';
         $taskpress_completed_taks_tbl = $wpdb->prefix.'taskpress_completed_tasks';
         $task_user_id = $_REQUEST['user_id'];
-        $current_month = date("m");
-        $current_year = date("Y");
+        $current_month = taskpress_timezone()->format('m');
+        $current_year = taskpress_timezone()->format('Y');
 
         //Find matched tasks from db
         $matched_tasks = $wpdb->get_results("SELECT assign_date, GROUP_CONCAT(task SEPARATOR '~') AS tasks, GROUP_CONCAT(id SEPARATOR '~') AS task_id FROM $taskpress_task_table_name WHERE assign_month = $current_month AND assign_year = $current_year GROUP BY assign_date");
@@ -86,7 +87,7 @@ function taskpress_task_progress_calendar(){
             $task_completed = 0;
             $task_uncompleted = 0;
             for($i=0; $i<count($tasks); $i++) {
-                $taskStatus = in_array($task_id_array[$i], $all_marked_task_ids) ? 'voltooid' : 'onvoltooid';
+                $taskStatus = in_array($task_id_array[$i], $all_marked_task_ids) ? 'completed' : 'uncompleted';
                 $task_completed += in_array($task_id_array[$i], $all_marked_task_ids) ? 1 : 0;
                 $task_uncompleted += !in_array($task_id_array[$i], $all_marked_task_ids) ? 1 : 0;
                 $task_collection .=  '<li class="'.$taskStatus.'">'.$tasks[$i].'</li>~';
