@@ -71,7 +71,7 @@ jQuery(document).ready(function($){
     var dateToday = new Date();
 
     <?php if(taskpress_timezone()->format('d') < 23){ ?>
-        var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
+        var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
     <?php }else{ ?>
         var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
     <?php } ?>

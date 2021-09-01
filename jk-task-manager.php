@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: WP Task Manager
+Plugin Name: JK Task Manager
 Plugin URI:
 Description: Wordpress Task Manager Plugin.
 Version: 1.0
