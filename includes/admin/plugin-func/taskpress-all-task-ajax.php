@@ -5,21 +5,18 @@ function taskpress_all_task(){
     // This is a secure process to validate if this request comes from a valid source.
     check_ajax_referer( 'taskpress_secure_nonce_name', 'security' );
 
-    if( isset($_POST['assign_date']) && !empty($_POST['assign_date']) ){
-        global $wpdb;
-        $taskpress_task_table_name = $wpdb->prefix.'taskpress_tasks';
-        $task_assign_date = $_POST['assign_date'];
-        $taskpress_all_tasks = $wpdb->get_results("SELECT * FROM $taskpress_task_table_name WHERE assign_date = '$task_assign_date'");
-        $task_count = 0;
+    global $wpdb;
+    $taskpress_task_table_name = $wpdb->prefix.'taskpress_tasks';
+    $taskpress_all_tasks = $wpdb->get_results("SELECT * FROM $taskpress_task_table_name");
+    $task_count = 0;
 
-        $table_data = '';
+    $table_data = '';
     $table_data .= '
     <table class="wp-list-table widefat striped table-view-list">
         <thead>
             <tr>
                 <th scope="col" class="manage-column column-title column-ticker-serial">#</th>
                 <th scope="col" class="manage-column column-title column-primary">Task</th>
-                <th scope="col" class="manage-column column-date">Assign Date</th>
                 <th scope="col" class="manage-column column-ticker-action">Action</th>
             </tr>
         </thead>
@@ -32,7 +29,6 @@ function taskpress_all_task(){
                     <td class="title column-title column-primary page-title" data-colname="Title">
                         <strong class="task-text-'.$taskpress_task->id.'">'.$taskpress_task->task.'</strong>
                     </td>
-                    <td width="180" class="date column-date" data-colname="Date">'.$taskpress_task->assign_date.'</td>
                     <th width="180" scope="col" class="manage-column column-task-action">
                         <div class="task-actions">
                             <button class="button button-primary task-edit-btn" data-id="'.$taskpress_task->id.'" data-date="'.$taskpress_task->assign_date.'">Edit</button>
@@ -52,7 +48,6 @@ function taskpress_all_task(){
             }
         $table_data .= '</tbody>
     </table>';
-    }
 
     echo $table_data;
 
@@ -103,7 +98,7 @@ function taskpress_all_task(){
                             $('#alertMsgTable .taskpress-notice-text').removeClass('notice-error notice'); //remove notice class
                             $('#alertMsgTable .notice-text').html(jsonResponse.text); //add response message
                             $('#alertMsgTable .taskpress-notice-text').addClass('notice-success notice'); //add notice class
-                            $('#taskListByDate [type=submit]').click();
+                            loadAllTask();
                         }
                     },
                     fail : function( err ) {

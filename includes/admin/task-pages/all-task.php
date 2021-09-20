@@ -16,24 +16,6 @@
                 <li><a href="admin.php?page=taskpress_my_tasks">Mijn Taken</a></li>
         </ul>
     </div>
-    <div class="taskpress-form-sm">
-        <div id="formResponseMsg" class="taskpress-notice">
-            <div class="taskpress-notice-text"><p class="notice-text"></p><span class="dashicons dashicons-no-alt remove-notice"></span></div>
-        </div>
-        <form id="taskListByDate" action="" method="post">
-            <input type="hidden" name="page" value="taskpress_task_list">
-            <div class="task-form-inline">
-                <div class="task-form-group">
-                    <label for="assign_date">Selecteer Datum toewijzen <span class="req">*</span> </label>
-                    <input name="assign_date" type="text" id="assign_date" class="assign_date regular-text" autocomplete="off" placeholder="Kies datum toewijzen" value="<?php echo !empty($_REQUEST['assign_date']) ? $_REQUEST['assign_date'] : ''; ?>" required>
-                </div>
-                <div class="task-form-group">
-                    <input type="hidden" name="action" value="taskpress_all_task">
-                    <button type="submit" class="button button-primary taskpress-btn mt-20" value="search" name="action">Zoeken op</button>
-                </div>
-            </div>
-        </form>
-    </div>
     <div id="alertMsgTable" class="taskpress-notice">
         <div class="taskpress-notice-text"><p class="notice-text"></p><span class="dashicons dashicons-no-alt remove-notice"></span></div>
     </div>
@@ -49,10 +31,10 @@
                 <label for="update_task">Taak Details <span class="req">*</span> </label>
                 <textarea class="large-text code" name="task" id="update_task" cols="30" rows="5" placeholder="Please enter task details here"></textarea>
             </div>
-            <div class="task-form-group">
+            <!-- <div class="task-form-group">
                 <label for="update_assign_date">Selecteer Datum toewijzen <span class="req">*</span> </label>
                 <input name="assign_date" type="text" id="update_assign_date" class="update_assign_date regular-text" autocomplete="off" placeholder="Select assign date">
-            </div>
+            </div> -->
             <div class="task-form-group">
                 <input type="hidden" name="action" value="taskpress_update_task">
                 <input type="hidden" name="task_id">
@@ -65,77 +47,71 @@
 jQuery(document).ready(function($){
 
     //Date Picker Config
-    var currentTime = new Date();
-    var startDateFrom = new Date(currentTime.getFullYear(),currentTime.getMonth(),1);
-    // var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
-    var dateToday = new Date();
+    // var currentTime = new Date();
+    // var startDateFrom = new Date(currentTime.getFullYear(),currentTime.getMonth(),1);
+    // var dateToday = new Date();
 
-    <?php if(taskpress_timezone()->format('d') < 23){ ?>
-        var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
-    <?php }else{ ?>
-        var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
-    <?php } ?>
+    <?php //if(taskpress_timezone()->format('d') < 23){ ?>
+        // var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
+    <?php //}else{ ?>
+        // var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
+    <?php //} ?>
 
-    $(".assign_date").datepicker({
-        dateFormat: 'yy-mm-dd',
-        minDate: startDateFrom,
-        maxDate: startDateTo,
-        // changeMonth: false,
-        // changeYear: false,
-        // stepMonths: false,
-    });
+    // $(".assign_date").datepicker({
+    //     dateFormat: 'yy-mm-dd',
+    //     minDate: startDateFrom,
+    //     maxDate: startDateTo,
+    // });
 
-    $(".update_assign_date").datepicker({
-        dateFormat: 'yy-mm-dd',
-        minDate: startDateFrom,
-        maxDate: startDateTo,
-        // changeMonth: false,
-        // changeYear: false,
-        // stepMonths: false,
-        minDate: dateToday
-    });
+    // $(".update_assign_date").datepicker({
+    //     dateFormat: 'yy-mm-dd',
+    //     minDate: startDateFrom,
+    //     maxDate: startDateTo,
+    //     minDate: dateToday
+    // });
 
-    $('#close').click(function(){
-        $.modal.close();
-    });
+    // $('#close').click(function(){
+    //     $.modal.close();
+    // });
 });
 </script>
 <script>
+function loadAllTask(){
     jQuery(document).ready(function($){
         //Ajax Get all Task
-        $( '#taskListByDate' ).on( 'submit', function() {
-            var form_data = jQuery( this ).serializeArray();
-            
-            // Here we add our nonce.
-            form_data.push( { "name" : "security", "value" : taskpress_ajax_nonce } );
+        var form_data = jQuery( this ).serializeArray();
 
-            $.ajax({
-                url : '<?php echo admin_url( "admin-ajax.php" ); ?>',
-                type : 'post',
-                data : form_data,
-                beforeSend: function () {
-                    $('.taskpress-d-none').fadeOut();
-                    $('#taskListByDate button[type=submit]').addClass('btn-loading');
-                },
-                success : function( response ) {
-                    $('#formResponseMsg .taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
-                    $('#taskListTable').html(response);
-                    $('.taskpress-d-none').fadeIn();
-                },
-                fail : function( err ) {
-                    $('.taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
-                    $('#formResponseMsg .notice-text').html('Something went wrong! Please try again later.'); //add response message
-                    $('.taskpress-notice-text').addClass('notice-error notice'); //add notice class
-                },
-                complete: function () {
-                    $('#taskListByDate button[type=submit]').removeClass('btn-loading');
-                },
-            });
-            
-            // This return prevents the submit event to refresh the page.
-            return false;
+        $.ajax({
+            url : '<?php echo admin_url( "admin-ajax.php" ); ?>',
+            type : 'post',
+            data : {
+                action: 'taskpress_all_task',
+                security: taskpress_ajax_nonce
+            },
+            beforeSend: function () {
+                $('.taskpress-d-none').fadeOut();
+                $('#taskListByDate button[type=submit]').addClass('btn-loading');
+            },
+            success : function( response ) {
+                $('#formResponseMsg .taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
+                $('#taskListTable').html(response);
+                $('.taskpress-d-none').fadeIn();
+            },
+            fail : function( err ) {
+                $('.taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
+                $('#formResponseMsg .notice-text').html('Something went wrong! Please try again later.'); //add response message
+                $('.taskpress-notice-text').addClass('notice-error notice'); //add notice class
+            },
+            complete: function () {
+                $('#taskListByDate button[type=submit]').removeClass('btn-loading');
+            },
         });
+        
+        // This return prevents the submit event to refresh the page.
+        return false;
     });
+}
+loadAllTask(); //load all task
 </script>
 <script>
     jQuery(document).ready(function($){
@@ -165,7 +141,7 @@ jQuery(document).ready(function($){
                         $('#alertMsgTable .taskpress-notice-text').removeClass('notice-error notice'); //remove notice class
                         $('#alertMsgTable .notice-text').html(jsonResponse.text); //add response message
                         $('#alertMsgTable .taskpress-notice-text').addClass('notice-success notice'); //add notice class
-                        $('#taskListByDate [type=submit]').click();
+                        loadAllTask();
                         $.modal.close();
                     }
                 },

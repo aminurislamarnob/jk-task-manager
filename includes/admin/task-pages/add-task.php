@@ -27,10 +27,10 @@
                             <label for="task">Taak Details <span class="req">*</span> </label>
                             <textarea class="large-text code" name="task" id="task" cols="30" rows="5" placeholder="Vul hier de details van uw taak in"></textarea>
                         </div>
-                        <div class="task-form-group">
-                            <label for="assign_date">Selecteer Datum toewijzen <span class="req">*</span> </label>
-                            <input name="assign_date" type="text" id="assign_date" class="assign_date regular-text" autocomplete="off" placeholder="Kies datum toewijzen">
-                        </div>
+<!--                        <div class="task-form-group">-->
+<!--                            <label for="assign_date">Selecteer Datum toewijzen <span class="req">*</span> </label>-->
+<!--                            <input name="assign_date" type="text" id="assign_date" class="assign_date regular-text" autocomplete="off" placeholder="Kies datum toewijzen">-->
+<!--                        </div>-->
                         <div class="task-form-group">
                             <input type="hidden" name="action" value="taskpress_add_task">
                             <button type="submit" id="submit" class="button button-primary taskpress-btn"><span>Taak toevoegen</span></button>
@@ -40,7 +40,7 @@
             </div>
             <div class="task-column-right">
                 <div class="task-added-list">
-                    <h3>Takenlijst van: <span id="taskListAddedDate"></span></h3>
+                    <h3>Takenlijst</h3>
                     <ul id="taskList"></ul>
                 </div>
             </div>

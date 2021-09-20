@@ -24,7 +24,7 @@ $taskpress_total_tasks = count($taskpress_all_tasks);
 
 //get total today tasks
 $taskpress_today_date = date("Y-m-d");
-$taskpress_today_tasks = $wpdb->get_results("SELECT id FROM $taskpress_task_table_name WHERE assign_date = '$taskpress_today_date'");
+$taskpress_today_tasks = $wpdb->get_results("SELECT id FROM $taskpress_task_table_name");
 $taskpress_total_today_task = count($taskpress_today_tasks);
 
 //count registered user
@@ -32,7 +32,7 @@ $taskpress_user_count = count_users();
 
 //get loggedin user total completed tasks
 $loggedin_user_id = get_current_user_id();
-$taskpress_completed_task = $wpdb->get_results("SELECT task_id FROM $taskpress_completed_taks_tbl WHERE user_id = $loggedin_user_id AND marked_date = '$taskpress_today_date'");
+$taskpress_completed_task = $wpdb->get_results("SELECT task_id FROM $taskpress_completed_taks_tbl WHERE user_id = $loggedin_user_id AND status = 1");
 
 ?>
 <div id="dashboard-widgets" class="metabox-holder">
@@ -54,13 +54,13 @@ $taskpress_completed_task = $wpdb->get_results("SELECT task_id FROM $taskpress_c
                         </svg>
                         <?php echo $taskpress_user_count['total_users']; ?> Users
                      </li>
-                     <li class="page-count">
+                     <!-- <li class="page-count">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
                         <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                         <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
                         </svg>
-                        <?php echo $taskpress_total_today_task; ?> Tasks Today
-                     </li>
+                        <?php //echo $taskpress_total_today_task; ?> Tasks Today
+                     </li> -->
                      <li class="post-count">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hdd-rack" viewBox="0 0 16 16">
                            <path d="M4.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zM3 4.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm2 7a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
