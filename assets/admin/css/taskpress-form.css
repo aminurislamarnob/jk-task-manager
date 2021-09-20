@@ -262,6 +262,10 @@ td.task-status .dashicons-yes, .notice-success .remove-notice {
 }
 
 /*Button Loading*/
+.ajax-loader.btn-loading {
+    width: 50px;
+    height: 50px;
+}
 .btn-loading{
     position: relative;
 }
@@ -276,7 +280,7 @@ td.task-status .dashicons-yes, .notice-success .remove-notice {
     bottom: 0;
     margin: auto;
     border: 3px solid transparent;
-    border-top-color: #ffffff;
+    border-top-color: #2171b1;
     border-radius: 50%;
     animation: button-loading-spinner 0.7s ease infinite;
 }

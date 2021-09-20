@@ -19,6 +19,7 @@
     <div id="alertMsgTable" class="taskpress-notice">
         <div class="taskpress-notice-text"><p class="notice-text"></p><span class="dashicons dashicons-no-alt remove-notice"></span></div>
     </div>
+    <div class="ajax-loader"></div>
     <div id="taskListTable" class="taskpress-list-table taskpress-d-none"></div>
 </div>
 <div class="modal update-task-modal">
@@ -44,38 +45,6 @@
     </div>
 </div>
 <script>
-jQuery(document).ready(function($){
-
-    //Date Picker Config
-    // var currentTime = new Date();
-    // var startDateFrom = new Date(currentTime.getFullYear(),currentTime.getMonth(),1);
-    // var dateToday = new Date();
-
-    <?php //if(taskpress_timezone()->format('d') < 23){ ?>
-        // var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
-    <?php //}else{ ?>
-        // var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
-    <?php //} ?>
-
-    // $(".assign_date").datepicker({
-    //     dateFormat: 'yy-mm-dd',
-    //     minDate: startDateFrom,
-    //     maxDate: startDateTo,
-    // });
-
-    // $(".update_assign_date").datepicker({
-    //     dateFormat: 'yy-mm-dd',
-    //     minDate: startDateFrom,
-    //     maxDate: startDateTo,
-    //     minDate: dateToday
-    // });
-
-    // $('#close').click(function(){
-    //     $.modal.close();
-    // });
-});
-</script>
-<script>
 function loadAllTask(){
     jQuery(document).ready(function($){
         //Ajax Get all Task
@@ -90,7 +59,7 @@ function loadAllTask(){
             },
             beforeSend: function () {
                 $('.taskpress-d-none').fadeOut();
-                $('#taskListByDate button[type=submit]').addClass('btn-loading');
+                $('.ajax-loader').addClass('btn-loading');
             },
             success : function( response ) {
                 $('#formResponseMsg .taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
@@ -103,7 +72,7 @@ function loadAllTask(){
                 $('.taskpress-notice-text').addClass('notice-error notice'); //add notice class
             },
             complete: function () {
-                $('#taskListByDate button[type=submit]').removeClass('btn-loading');
+                $('.ajax-loader').removeClass('btn-loading');
             },
         });
         
