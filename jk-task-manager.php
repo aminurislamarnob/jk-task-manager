@@ -19,7 +19,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /**
  * Currently plugin version.
  */
-define('TASKPRESS_PLUGIN_VERSION', '1.0');
+define('TASKPRESS_PLUGIN_VERSION', '2.0');
 
 
 /**
