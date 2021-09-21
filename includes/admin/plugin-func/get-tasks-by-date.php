@@ -1,5 +1,5 @@
 <?php
-function get_task_list(){
+function get_task_list_by_date(){
     global $wpdb;
     $taskpress_task_table_name = $wpdb->prefix.'taskpress_tasks';
 

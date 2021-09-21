@@ -32,10 +32,6 @@
                 <label for="update_task">Taak Details <span class="req">*</span> </label>
                 <textarea class="large-text code" name="task" id="update_task" cols="30" rows="5" placeholder="Please enter task details here"></textarea>
             </div>
-            <!-- <div class="task-form-group">
-                <label for="update_assign_date">Selecteer Datum toewijzen <span class="req">*</span> </label>
-                <input name="assign_date" type="text" id="update_assign_date" class="update_assign_date regular-text" autocomplete="off" placeholder="Select assign date">
-            </div> -->
             <div class="task-form-group">
                 <input type="hidden" name="action" value="taskpress_update_task">
                 <input type="hidden" name="task_id">
@@ -45,42 +41,42 @@
     </div>
 </div>
 <script>
-function loadAllTask(){
-    jQuery(document).ready(function($){
-        //Ajax Get all Task
-        var form_data = jQuery( this ).serializeArray();
+    function loadAllTask(){
+        jQuery(document).ready(function($){
+            //Ajax Get all Task
+            var form_data = jQuery( this ).serializeArray();
 
-        $.ajax({
-            url : '<?php echo admin_url( "admin-ajax.php" ); ?>',
-            type : 'post',
-            data : {
-                action: 'taskpress_all_task',
-                security: taskpress_ajax_nonce
-            },
-            beforeSend: function () {
-                $('.taskpress-d-none').fadeOut();
-                $('.ajax-loader').addClass('btn-loading');
-            },
-            success : function( response ) {
-                $('#formResponseMsg .taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
-                $('#taskListTable').html(response);
-                $('.taskpress-d-none').fadeIn();
-            },
-            fail : function( err ) {
-                $('.taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
-                $('#formResponseMsg .notice-text').html('Something went wrong! Please try again later.'); //add response message
-                $('.taskpress-notice-text').addClass('notice-error notice'); //add notice class
-            },
-            complete: function () {
-                $('.ajax-loader').removeClass('btn-loading');
-            },
+            $.ajax({
+                url : '<?php echo admin_url( "admin-ajax.php" ); ?>',
+                type : 'post',
+                data : {
+                    action: 'taskpress_all_task',
+                    security: taskpress_ajax_nonce
+                },
+                beforeSend: function () {
+                    $('.taskpress-d-none').fadeOut();
+                    $('.ajax-loader').addClass('btn-loading');
+                },
+                success : function( response ) {
+                    $('#formResponseMsg .taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
+                    $('#taskListTable').html(response);
+                    $('.taskpress-d-none').fadeIn();
+                },
+                fail : function( err ) {
+                    $('.taskpress-notice-text').removeClass('notice-success notice'); //remove notice class
+                    $('#formResponseMsg .notice-text').html('Something went wrong! Please try again later.'); //add response message
+                    $('.taskpress-notice-text').addClass('notice-error notice'); //add notice class
+                },
+                complete: function () {
+                    $('.ajax-loader').removeClass('btn-loading');
+                },
+            });
+            
+            // This return prevents the submit event to refresh the page.
+            return false;
         });
-        
-        // This return prevents the submit event to refresh the page.
-        return false;
-    });
-}
-loadAllTask(); //load all task
+    }
+    loadAllTask(); //load all task
 </script>
 <script>
     jQuery(document).ready(function($){
@@ -96,7 +92,7 @@ loadAllTask(); //load all task
                 type : 'post',
                 data : form_data,
                 beforeSend: function () {
-                    $('#editTaskpressTask button[type=submit]').addClass('btn-loading');
+                    $('.ajax-loader').addClass('btn-loading');
                 },
                 success : function( response ) {
                     var jsonResponse = $.parseJSON(response);
@@ -110,7 +106,7 @@ loadAllTask(); //load all task
                         $('#alertMsgTable .taskpress-notice-text').removeClass('notice-error notice'); //remove notice class
                         $('#alertMsgTable .notice-text').html(jsonResponse.text); //add response message
                         $('#alertMsgTable .taskpress-notice-text').addClass('notice-success notice'); //add notice class
-                        loadAllTask();
+                        loadAllTask(); //load all task
                         $.modal.close();
                     }
                 },
@@ -120,7 +116,7 @@ loadAllTask(); //load all task
                     $('#formEditResponseMsg .taskpress-notice-text').addClass('notice-error notice'); //add notice class
                 },
                 complete: function () {
-                    $('#editTaskpressTask button[type=submit]').removeClass('btn-loading');
+                    $('.ajax-loader').removeClass('btn-loading');
                 },
             });
             

@@ -13,7 +13,7 @@ function taskpress_my_tasks(){
     $taskpress_all_tasks = $wpdb->get_results("SELECT id, task FROM $taskpress_task_table_name");
     
     //Make today task completed loggedin user task id array
-    $taskpress_completed_task = $wpdb->get_results("SELECT task_id FROM $taskpress_completed_taks_tbl WHERE user_id = $loggedin_user_id AND status = 1");
+    $taskpress_completed_task = $wpdb->get_results("SELECT task_id FROM $taskpress_completed_taks_tbl WHERE user_id = $loggedin_user_id AND marked_date = '$taskpress_today_date'");
     $all_marked_task_ids = [];
     foreach($taskpress_completed_task as $taskpress_task_completed){
         $all_marked_task_ids[] = $taskpress_task_completed->task_id;

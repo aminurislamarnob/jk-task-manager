@@ -27,10 +27,6 @@
                             <label for="task">Taak Details <span class="req">*</span> </label>
                             <textarea class="large-text code" name="task" id="task" cols="30" rows="5" placeholder="Vul hier de details van uw taak in"></textarea>
                         </div>
-<!--                        <div class="task-form-group">-->
-<!--                            <label for="assign_date">Selecteer Datum toewijzen <span class="req">*</span> </label>-->
-<!--                            <input name="assign_date" type="text" id="assign_date" class="assign_date regular-text" autocomplete="off" placeholder="Kies datum toewijzen">-->
-<!--                        </div>-->
                         <div class="task-form-group">
                             <input type="hidden" name="action" value="taskpress_add_task">
                             <button type="submit" id="submit" class="button button-primary taskpress-btn"><span>Taak toevoegen</span></button>
@@ -40,42 +36,14 @@
             </div>
             <div class="task-column-right">
                 <div class="task-added-list">
-                    <h3>Takenlijst</h3>
+                    <h3>Takenlijst</span></h3>
                     <ul id="taskList"></ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-    jQuery(document).ready(function($){
-        //Date Picker Config
-        var currentTime = new Date();
-        var startDateFrom = new Date(currentTime.getFullYear(),currentTime.getMonth(),1);
-        var dateToday = new Date();
 
-        <?php if(taskpress_timezone()->format('d') < 23){ ?>
-            var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,0);
-        <?php }else{ ?>
-            var startDateTo = new Date(currentTime.getFullYear(),currentTime.getMonth() +1,7);
-        <?php } ?>
-
-        $(".assign_date").datepicker({
-            dateFormat: 'yy-mm-dd',
-            minDate: startDateFrom,
-            maxDate: startDateTo,
-            // changeMonth: false,
-            // changeYear: false,
-            // stepMonths: false,
-            minDate: dateToday
-        });
-
-        //Remove Notice
-        // $('.remove-notice').click(function(){
-        //     $('.taskpress-notice-text').removeClass('notice');
-        // });
-    });
-    </script>
     <script>
         jQuery(document).ready(function($){
             //Ajax Add Task
@@ -104,7 +72,6 @@
                             //generate already added task list
                             if(!jsonResponse.invalid_assign_date){
                                 $('#taskList').html(jsonResponse.tasks);
-                                $('#taskListAddedDate').html(jsonResponse.assign_date);
                                 $('.task-added-list').show();
                             }
                         }else{
@@ -115,7 +82,6 @@
                             
                             //generate already added task list
                             $('#taskList').html(jsonResponse.tasks);
-                            $('#taskListAddedDate').html(jsonResponse.assign_date);
                             $('.task-added-list').show();
                         }
                     },

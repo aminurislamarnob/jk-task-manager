@@ -17,6 +17,7 @@ function taskpress_all_task(){
             <tr>
                 <th scope="col" class="manage-column column-title column-ticker-serial">#</th>
                 <th scope="col" class="manage-column column-title column-primary">Task</th>
+                <th scope="col" class="manage-column column-date">Assign Date</th>
                 <th scope="col" class="manage-column column-ticker-action">Action</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@ function taskpress_all_task(){
                     <td class="title column-title column-primary page-title" data-colname="Title">
                         <strong class="task-text-'.$taskpress_task->id.'">'.$taskpress_task->task.'</strong>
                     </td>
+                    <td width="180" class="date column-date" data-colname="Date">'.$taskpress_task->assign_date.'</td>
                     <th width="180" scope="col" class="manage-column column-task-action">
                         <div class="task-actions">
                             <button class="button button-primary task-edit-btn" data-id="'.$taskpress_task->id.'" data-date="'.$taskpress_task->assign_date.'">Edit</button>
@@ -98,7 +100,7 @@ function taskpress_all_task(){
                             $('#alertMsgTable .taskpress-notice-text').removeClass('notice-error notice'); //remove notice class
                             $('#alertMsgTable .notice-text').html(jsonResponse.text); //add response message
                             $('#alertMsgTable .taskpress-notice-text').addClass('notice-success notice'); //add notice class
-                            loadAllTask();
+                            loadAllTask(); //load all task
                         }
                     },
                     fail : function( err ) {

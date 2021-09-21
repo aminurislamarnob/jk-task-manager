@@ -260,14 +260,18 @@ td.task-status .dashicons-yes, .notice-success .remove-notice {
 .taskpress-list-table table thead th:last-child, .taskpress-list-table table thead th:last-child {
     border-top-right-radius: 4px;
 }
-
+.task-list-wrapper div#myTaskList {
+    margin-top: 58px;
+}
 /*Button Loading*/
-.ajax-loader.btn-loading {
+.ajax-loader {
     width: 50px;
     height: 50px;
+    display: none;
 }
 .btn-loading{
     position: relative;
+    display: block;
 }
 .btn-loading::after {
     content: "";

@@ -16,24 +16,34 @@ function taskpress_update_task(){
 
 
         if( !empty($task) ) {
-            //update code
-            $taskUpdateQuery = $wpdb->update( $taskpress_task_table_name,
-                array(
-                    "task" => $task,
-                ),
-                array(
-                    'id' => $task_id
-                )
+            //Check same day selected users number of task
+            $matched_tasks = $wpdb->get_results("SELECT * FROM $taskpress_task_table_name WHERE id != $task_id");
+            $max_task_limit = 10;
 
-            );
-            
-            //Confirmation Message
-            if($taskUpdateQuery){
-                $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
-                echo $message;
-                wp_die();
+            if(count($matched_tasks) < $max_task_limit){ //maximum 10 task for a user in a day.
+                //update code
+                $taskUpdateQuery = $wpdb->update( $taskpress_task_table_name,
+                    array(
+                        "task" => $task,
+                    ),
+                    array(
+                        'id' => $task_id
+                    )
+
+                );
+                
+                //Confirmation Message
+                if($taskUpdateQuery){
+                    $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
+                    echo $message;
+                    wp_die();
+                }else{
+                    $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
+                    echo $message;
+                    wp_die();
+                }
             }else{
-                $message = json_encode(array('type'=>'success', 'text' => 'Task Successfully Updated' ) );
+                $message = json_encode(array('type'=>'error', 'text' => 'Already assigned '.$max_task_limit.' task for this selected date.', 'tasks' => get_task_list_by_date()));
                 echo $message;
                 wp_die();
             }
