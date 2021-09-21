@@ -3,7 +3,7 @@
 Plugin Name: JK Task Manager
 Plugin URI:
 Description: Wordpress Task Manager Plugin.
-Version: 1.0
+Version: 2.0
 Author: Jakarea Parvez
 Author URI: https://jakarea.github.io
 License: GPLv2 or later
