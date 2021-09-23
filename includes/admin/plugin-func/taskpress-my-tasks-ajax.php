@@ -68,7 +68,7 @@ function taskpress_my_tasks(){
                         },
                         success: function(response) {
                             
-                            loadMyTasks(); //load task from 
+                            loadTodayTask(); //load task from 
 							
                         },
 						complete: function () {
@@ -77,21 +77,6 @@ function taskpress_my_tasks(){
                     });
                 // }
             });
-
-            //load task
-            function loadMyTasks(){
-                $.ajax({
-                    url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-                    data: {"action": "taskpress_my_tasks" },
-                    type: 'post',
-                    beforeSend: function() {
-                        // $(".loaderDiv").show();
-                    },
-                    success: function(response) {
-                        $('#myTaskList').html(response);
-                    }
-                });
-            };
         });
     </script>
     <?php

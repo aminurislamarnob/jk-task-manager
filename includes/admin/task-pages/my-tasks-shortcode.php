@@ -28,13 +28,13 @@
     $tasks = []; //tasks list
     $tasks_status = []; //tasks status
     $task_json = ''; //json for full calendar
-    $currentMonthTotalDays = date('t');
-    $currentDayOfMonth = date('j');
+    $currentMonthTotalDays = taskpress_timezone()->format('t');
+    $currentDayOfMonth = taskpress_timezone()->format('j');
 
-    $currentMonth = date('m');
-    $currentYear = date('Y');
+    $currentMonth = taskpress_timezone()->format('m');
+    $currentYear = taskpress_timezone()->format('Y');
 
-    for($d=1; $d<=$currentMonthTotalDays; $d++){
+    for($d=1; $d<=$currentDayOfMonth; $d++){
 
         $assignDate = $currentYear.'-'.$currentMonth.'-'.sprintf("%02d", $d);
 
@@ -65,10 +65,9 @@
 ?>
 </div>
 <script>
-    jQuery(document).ready(function($){
-        //Ajax Get all Task
-        // $(window).load(function() {
-            
+    function loadTodayTask(){
+        jQuery(document).ready(function($){
+            //Ajax Get all Task
             $.ajax({
                 url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
                 data: {"action": "taskpress_my_tasks" },
@@ -84,8 +83,9 @@
                     // console.log(err)
                 },
             });
-        // });
-    });
+        });
+    }
+    loadTodayTask();
 </script>
 <script>
     //FullJS Calendar Config

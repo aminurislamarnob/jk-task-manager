@@ -70,11 +70,12 @@ function taskpress_task_progress_calendar(){
         $tasks = []; //tasks list
         $tasks_status = []; //tasks status
         $task_json = ''; //json for full calendar
-        $currentMonthTotalDays = date('t');
-        $currentDayOfMonth = date('j');
 
-        $currentMonth = date('m');
-        $currentYear = date('Y');
+        $currentMonthTotalDays = taskpress_timezone()->format('t');
+        $currentDayOfMonth = taskpress_timezone()->format('j');
+    
+        $currentMonth = taskpress_timezone()->format('m');
+        $currentYear = taskpress_timezone()->format('Y');
 
         for($d=1; $d<=$currentMonthTotalDays; $d++){
 

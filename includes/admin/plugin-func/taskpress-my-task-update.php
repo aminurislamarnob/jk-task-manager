@@ -18,11 +18,11 @@ function taskpress_task_status_update(){
 
         if( !empty($task_id) ) {
 
-            $taskpress_find_task = $wpdb->get_results("SELECT * FROM $taskpress_completed_taks_tbl WHERE task_id = $task_id AND user_id = $loggedin_user_id");
+            $taskpress_find_task = $wpdb->get_results("SELECT * FROM $taskpress_completed_taks_tbl WHERE task_id = $task_id AND user_id = $loggedin_user_id AND marked_date = '$taskpress_today_date'");
 
             if(count($taskpress_find_task) > 0){ //if find already marked then throw an error
                 //delete code
-                $taskCompletedDelete = $wpdb->delete( $taskpress_completed_taks_tbl, array( 'task_id' => $task_id, 'user_id' => $loggedin_user_id) );
+                $taskCompletedDelete = $wpdb->delete( $taskpress_completed_taks_tbl, array( 'task_id' => $task_id, 'user_id' => $loggedin_user_id, 'marked_date' => $taskpress_today_date) );
                 
             
                 //Confirmation Message
