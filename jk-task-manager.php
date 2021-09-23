@@ -2,7 +2,7 @@
 /*
 Plugin Name: JK Task Manager
 Plugin URI:
-Description: Wordpress Task Manager Plugin.
+Description: Wordpress Task Manager Plugin. Shortcode: [frontend_checklist]
 Version: 2.0
 Author: Jakarea Parvez
 Author URI: https://jakarea.github.io
